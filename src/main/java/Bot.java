@@ -1555,6 +1555,6 @@ public void onUpdateReceived(Update update) {
 
     @Override
     public String getBotToken() {
-        return "5343949304:AAEf_uJgA8TNe6HF2WdcDJRPxCszu-LWjfc";
+        return "5343949304:AAEf_uJgA8TNe6";
     }
 }
