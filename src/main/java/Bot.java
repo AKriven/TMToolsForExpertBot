@@ -2,7 +2,6 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -18,8 +17,7 @@ import java.util.List;
 public class Bot extends TelegramLongPollingBot {
 
 
-    File LOL = new File("src/main/resources/3ff81db8a79ef8af9588ad159e6c39e6.jpg");
-    InputFile lll = new InputFile(LOL);
+
 
     //files for volsk
     File VOL_CEMI42N = new File("src/main/resources/VOL_PDS_CEM I 42.5N_2022 Q3_RUS.pdf");
@@ -132,17 +130,7 @@ public void onUpdateReceived(Update update) {
             } catch (TelegramApiException e) {
                 e.printStackTrace();
             }
-        }  else if (update.getMessage().getText().equals("горобэць")) {
-                try {
-                    SendPhoto LOL = new SendPhoto();
-                    LOL.setChatId(update.getMessage().getChatId());
-                    LOL.setPhoto(lll);
-
-                    execute(LOL);
-                } catch (TelegramApiException e) {
-                    e.printStackTrace();
-                }
-            }
+        }
         }
            else   if (update.hasCallbackQuery()){
     Message message = update.getMessage();
