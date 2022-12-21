@@ -3,7 +3,6 @@ import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
-import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
@@ -14,94 +13,62 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bot extends TelegramLongPollingBot {
+public class Bot extends TelegramLongPollingBot   {
 
 
+    //tech properties volsk
+    InputFile VOL_CEMI42N_descr = new InputFile(new File("src/main/resources/VOL_PDS_CEM I 42.5N_2022 Q3_RUS.pdf"));
+    InputFile VOL_CEMII42N_descr = new InputFile(new File("src/main/resources/VOL_PDS_CEM II A-LL 42.5N_2022 Q3_RUS.pdf"));
+    InputFile VOL_CEMII_AS_42N_descr = new InputFile(new File("src/main/resources/VOL_PDS_CEM II A-S 42.5N_2022 Q3_RUS.pdf"));
+    InputFile VOL_CEMII_AS_42DO_descr = new InputFile(new File("src/main/resources/VOL_PDS_CEM II A-S 42.5N DO_2022 Q3_RUS.pdf"));
+    InputFile VOL_CEM052N_descr = new InputFile( new File("src/main/resources/VOL_PDS_CEM 0 52.5N_2022 Q3_RUS.pdf"));
+    InputFile VOL_CEMI52AP_descr = new InputFile(new File("src/main/resources/VOL_PDS_CEM I 52.5N AP_2022 Q3_RUS.pdf"));
+    InputFile VOL_CEMI52ZI_descr = new InputFile(new File("src/main/resources/VOL_PDS_CEM I 52.5N ZI_2022 Q3_RUS.pdf"));
+    InputFile VOL_CEMI52DP_descr = new InputFile(new File("src/main/resources/VOL_PDS_CEM I 52.5N DP_2022 Q3_RUS.pdf"));
 
+    //certificate volsk
 
-    //files for volsk
-    File VOL_CEMI42N = new File("src/main/resources/VOL_PDS_CEM I 42.5N_2022 Q3_RUS.pdf");
-    File VOL_CEMI42N_CC = new File("src/main/resources/ВОЛ_ ЦЕМ I 42,5Н_Сертификат_2021-2022.pdf");
-    File VOL_CEMII42N = new File("src/main/resources/VOL_PDS_CEM II A-LL 42.5N_2022 Q3_RUS.pdf");
-    File VOL_CEMII42N_CC = new File("src/main/resources/ВОЛ_ЦЕМ II А-И 42,5Н_Сертификат_2022-2023.pdf");
-    File VOL_CEMII_AS_42N = new File("src/main/resources/VOL_PDS_CEM II A-S 42.5N_2022 Q3_RUS.pdf");
-    File VOL_CEMII_AS_42N_CC = new File("src/main/resources/ВОЛ_ЦЕМ II А-Ш 42,5Н_Сертификат_2022-2023.pdf");
-    File VOL_CEMII_AS_42DO = new File("src/main/resources/VOL_PDS_CEM II A-S 42.5N DO_2022 Q3_RUS.pdf");
-    File VOL_CEMII_AS_42DO_CC = new File("src/main/resources/ВОЛ_ЦЕМ II А-Ш 42,5Н ДО_Сертификат_2021-2023.pdf");
-    File VOL_CEM052N = new File("src/main/resources/VOL_PDS_CEM 0 52.5N_2022 Q3_RUS.pdf");
-    File VOL_CEM052N_CC = new File("src/main/resources/ВОЛ_ЦЕМ 0 52,5Н_Сертификат_2022-2023.pdf");
-    File VOL_CEMI52AP = new File("src/main/resources/VOL_PDS_CEM I 52.5N AP_2022 Q3_RUS.pdf");
-    File VOL_CEMI52AP_CC = new File("src/main/resources/ВОЛ_ЦЕМ I 52,5Н АП_Сертификат_2022-2023.pdf");
-    File VOL_CEMI52ZI = new File("src/main/resources/VOL_PDS_CEM I 52.5N ZI_2022 Q3_RUS.pdf");
-    File VOL_CEMI52ZI_CC = new File("src/main/resources/ВОЛ_ЦЕМ I  52,5Н ЖИ_Сертификат_2022-2023.pdf");
-    File VOL_CEMI52DP = new File("src/main/resources/VOL_PDS_CEM I 52.5N DP_2022 Q3_RUS.pdf");
-    File VOL_CEMI52DP_CC = new File("src/main/resources/ВОЛ_ЦЕМ I 52,5Н ДП_Сертификат_2021-2023.pdf");
-    //tech properties
-    InputFile VOL_CEMI42N_descr = new InputFile(VOL_CEMI42N);
-    InputFile VOL_CEMII42N_descr = new InputFile(VOL_CEMII42N);
-    InputFile VOL_CEMII_AS_42N_descr = new InputFile(VOL_CEMII_AS_42N);
-    InputFile VOL_CEMII_AS_42DO_descr = new InputFile(VOL_CEMII_AS_42DO);
-    InputFile VOL_CEM052N_descr = new InputFile(VOL_CEM052N);
-    InputFile VOL_CEMI52AP_descr = new InputFile(VOL_CEMI52AP);
-    InputFile VOL_CEMI52ZI_descr = new InputFile(VOL_CEMI52ZI);
-    InputFile VOL_CEMI52DP_descr = new InputFile(VOL_CEMI52DP);
-    //certificate
-    InputFile VOL_CEMI42N_cert = new InputFile(VOL_CEMI42N_CC);
-    InputFile VOL_CEMII42N_cert = new InputFile(VOL_CEMII42N_CC);
-    InputFile VOL_CEMII_AS_42N_cert = new InputFile(VOL_CEMII_AS_42N_CC);
-    InputFile VOL_CEMII_AS_42DO_cert = new InputFile(VOL_CEMII_AS_42DO_CC);
-    InputFile VOL_CEM052N_cert = new InputFile(VOL_CEM052N_CC);
-    InputFile VOL_CEMI52AP_cert = new InputFile(VOL_CEMI52AP_CC);
-    InputFile VOL_CEMI52ZI_cert = new InputFile(VOL_CEMI52ZI_CC);
-    InputFile VOL_CEMI52DP_cert = new InputFile(VOL_CEMI52DP_CC);
+    InputFile VOL_CEMI42N_cert = new InputFile(new File("src/main/resources/ВОЛ_ ЦЕМ I 42,5Н_Сертификат_2021-2022.pdf"));
+    InputFile VOL_CEMII42N_cert = new InputFile(new File("src/main/resources/ВОЛ_ЦЕМ II А-И 42,5Н_Сертификат_2022-2023.pdf"));
+    InputFile VOL_CEMII_AS_42N_cert = new InputFile(new File("src/main/resources/ВОЛ_ЦЕМ II А-Ш 42,5Н_Сертификат_2022-2023.pdf"));
+    InputFile VOL_CEMII_AS_42DO_cert = new InputFile(new File("src/main/resources/ВОЛ_ЦЕМ II А-Ш 42,5Н ДО_Сертификат_2021-2023.pdf"));
+    InputFile VOL_CEM052N_cert = new InputFile(new File("src/main/resources/ВОЛ_ЦЕМ 0 52,5Н_Сертификат_2022-2023.pdf"));
+    InputFile VOL_CEMI52AP_cert = new InputFile(new File("src/main/resources/ВОЛ_ЦЕМ I 52,5Н АП_Сертификат_2022-2023.pdf"));
+    InputFile VOL_CEMI52ZI_cert = new InputFile(new File("src/main/resources/ВОЛ_ЦЕМ I  52,5Н ЖИ_Сертификат_2022-2023.pdf"));
+    InputFile VOL_CEMI52DP_cert = new InputFile(new File("src/main/resources/ВОЛ_ЦЕМ I 52,5Н ДП_Сертификат_2021-2023.pdf"));
 
-    //files for shurovo
-    File SHU_CEMI42N = new File("src/main/resources/SHU_PDS_CEM I 42.5N_2022 Q3_RUS.pdf");
-    File SHU_CEMI42N_CC = new File("src/main/resources/ЩУР_ЦЕМ I 42,5Н_Сертификат_2021-2022.pdf");
-    File SHU_CEMII42N = new File("src/main/resources/SHU_PDS_CEM II A-LL 42.5N_2022 Q3_RUS.pdf");
-    File SHU_CEMII42N_CC = new File("src/main/resources/ЩУР_ЦЕМ II А-И 42,5Н_Сертификат_2021-2022.pdf");
-    File SHU_CEM052N = new File("src/main/resources/SHU_PDS_CEM 0 52.5N_2022 Q3_RUS.pdf");
-    File SHU_CEM052N_CC = new File("src/main/resources/ЩУР_ЦЕМ 0 52,5Н_Сертификат_2021-2022.pdf");
-    File SHU_PCW = new File("src/main/resources/SHU_PDS_PCW 1-500-D0_2022 Q3_RUS.pdf");
-    File SHU_PCW_CC = new File("src/main/resources/ЩУР_ПЦБ 1-500-Д0_Сертификат_2021-2022.pdf");
-    File SHU_CEMI52AP = new File("src/main/resources/SHU_PDS_CEM I 52.5N AP_2022 Q3_RUS.pdf");
-    File SHU_CEMI52AP_CC = new File("src/main/resources/ЩУР_ЦЕМ I 52,5Н АП_Сертификат_2021-2022.pdf");
-    File SHU_CEMI52DP = new File("src/main/resources/SHU_PDS_CEM I 52.5N DP_2022 Q3_RUS.pdf");
-    File SHU_CEMI52DP_CC = new File("src/main/resources/ЩУР_ЦЕМ I 52,5Н ДП_Сертификат_2021-2022.pdf");
-    File SHU_CEMI52ZI = new File("src/main/resources/SHU_PDS_CEM I 52.5N ZI_2022 Q3_RUS.pdf");
-    File SHU_CEMI52ZI_CC = new File("src/main/resources/ЩУР_ЦЕМ I  52,5Н ЖИ_Сертификат_2021-2022.pdf");
-    //tech properties
-    InputFile SHU_CEMI42N_descr = new InputFile(SHU_CEMI42N);
-    InputFile SHU_CEMII42N_descr = new InputFile(SHU_CEMII42N);
-    InputFile SHU_CEM052N_descr = new InputFile(SHU_CEM052N);
-    InputFile SHU_PCW_descr = new InputFile(SHU_PCW);
-    InputFile SHU_CEMI52AP_descr = new InputFile(SHU_CEMI52AP);
-    InputFile SHU_CEMI52DP_descr = new InputFile(SHU_CEMI52DP);
-    InputFile SHU_CEMI52ZI_descr = new InputFile(SHU_CEMI52ZI);
-    //certificate
-    InputFile SHU_CEMI42N_cert = new InputFile(SHU_CEMI42N_CC);
-    InputFile SHU_CEMII42N_cert = new InputFile(SHU_CEMII42N_CC);
-    InputFile SHU_CEM052N_cert = new InputFile(SHU_CEM052N_CC);
-    InputFile SHU_PCW_cert = new InputFile(SHU_PCW_CC);
-    InputFile SHU_CEMI52AP_cert = new InputFile(SHU_CEMI52AP_CC);
-    InputFile SHU_CEMI52DP_cert = new InputFile(SHU_CEMI52DP_CC);
-    InputFile SHU_CEMI52ZI_cert = new InputFile(SHU_CEMI52ZI_CC);
+    //tech properties shurovo
+    InputFile SHU_CEMI42N_descr = new InputFile(new File("src/main/resources/SHU_PDS_CEM I 42.5N_2022 Q3_RUS.pdf"));
+    InputFile SHU_CEMII42N_descr = new InputFile(new File("src/main/resources/ЩУР_ЦЕМ I 42,5Н_Сертификат_2021-2022.pdf"));
+    InputFile SHU_CEM052N_descr = new InputFile(new File("src/main/resources/SHU_PDS_CEM 0 52.5N_2022 Q3_RUS.pdf"));
+    InputFile SHU_PCW_descr = new InputFile(new File("src/main/resources/SHU_PDS_PCW 1-500-D0_2022 Q3_RUS.pdf"));
+    InputFile SHU_CEMI52AP_descr = new InputFile(new File("src/main/resources/SHU_PDS_CEM I 52.5N AP_2022 Q3_RUS.pdf"));
+    InputFile SHU_CEMI52DP_descr = new InputFile(new File("src/main/resources/SHU_PDS_CEM I 52.5N DP_2022 Q3_RUS.pdf"));
+    InputFile SHU_CEMI52ZI_descr = new InputFile(new File("src/main/resources/SHU_PDS_CEM I 52.5N ZI_2022 Q3_RUS.pdf"));
+
+    //certificate shurovo
+    InputFile SHU_CEMI42N_cert = new InputFile(new File("src/main/resources/ЩУР_ЦЕМ I 42,5Н_Сертификат_2021-2022.pdf"));
+    InputFile SHU_CEMII42N_cert = new InputFile(new File("src/main/resources/ЩУР_ЦЕМ II А-И 42,5Н_Сертификат_2021-2022.pdf"));
+    InputFile SHU_CEM052N_cert = new InputFile(new File("src/main/resources/ЩУР_ЦЕМ 0 52,5Н_Сертификат_2021-2022.pdf"));
+    InputFile SHU_PCW_cert = new InputFile(new File("src/main/resources/ЩУР_ПЦБ 1-500-Д0_Сертификат_2021-2022.pdf"));
+    InputFile SHU_CEMI52AP_cert = new InputFile(new File("src/main/resources/ЩУР_ЦЕМ I 52,5Н АП_Сертификат_2021-2022.pdf"));
+    InputFile SHU_CEMI52DP_cert = new InputFile(new File("src/main/resources/ЩУР_ЦЕМ I 52,5Н ДП_Сертификат_2021-2022.pdf"));
+    InputFile SHU_CEMI52ZI_cert = new InputFile(new File("src/main/resources/ЩУР_ЦЕМ I  52,5Н ЖИ_Сертификат_2021-2022.pdf"));
 
     //files for Fersikovo
 
 
 
     //files for fersikovo cem 1B
-    File FER_PDS_CEMI = new File("src/main/resources/FER_PDS_CEM I 42.5R_2022 Q3_RUS.pdf");
-    File FER_PDS_CEMI_certificate = new File("src/main/resources/ФЕР_ЦЕМ I 42,5Б_Сертификат_2022-2023.pdf");
-    InputFile CEM1B_descr = new InputFile(FER_PDS_CEMI);
-    InputFile CEM1B_certificate = new InputFile(FER_PDS_CEMI_certificate);
+
+    InputFile CEM1B_descr = new InputFile(new File("src/main/resources/FER_PDS_CEM I 42.5R_2022 Q3_RUS.pdf"));
+    InputFile CEM1B_certificate = new InputFile(new File("src/main/resources/ФЕР_ЦЕМ I 42,5Б_Сертификат_2022-2023.pdf"));
+
 
     //files for fersikovo cem2
-    File FER_PDS_CEMII = new File("src/main/resources/FER_PDS_CEM II A-LL 42.5R_2022 Q2_RUS.pdf");
-    File fer_PDS_CEMII_certificate = new File("src/main/resources/ФЕР_ЦЕМ II А-И 42,5Б_Сертификат_2022-2023.pdf");
-    InputFile CEM2B_descr = new InputFile (FER_PDS_CEMII);
-    InputFile CEM2B_certificate = new InputFile(fer_PDS_CEMII_certificate);
+     InputFile CEM2B_descr = new InputFile (new File("src/main/resources/FER_PDS_CEM II A-LL 42.5R_2022 Q2_RUS.pdf"));
+    InputFile CEM2B_certificate = new InputFile(new File( "src/main/resources/ФЕР_ЦЕМ II А-И 42,5Б_Сертификат_2022-2023.pdf"));
+   // InputFile CEM2B_certificate = new InputFile(new File( "ФЕР_ЦЕМ II А-И 42,5Б_Сертификат_2022-2023.pdf"));//работает в случае размещения файлов рядом с запускаемым jar-ником
 
 
 
@@ -123,7 +90,7 @@ public void onUpdateReceived(Update update) {
 
     // We check if the update has a message and the message has text
     if (update.hasMessage() && update.getMessage().hasText()) {
-        String message_text = update.getMessage().getText();
+
         if (update.getMessage().getText().equals("/start")) {
             try {
                 execute(sendStartInlineKeyboardMessage(update.getMessage().getChatId()));
@@ -131,9 +98,10 @@ public void onUpdateReceived(Update update) {
                 e.printStackTrace();
             }
         }
-        }
-           else   if (update.hasCallbackQuery()){
-    Message message = update.getMessage();
+    }
+
+    else   if (update.hasCallbackQuery()){
+
         switch (update.getCallbackQuery().getData()) {
             case "toStart":
                 try {
@@ -142,8 +110,6 @@ public void onUpdateReceived(Update update) {
                     e.printStackTrace();
                 }
                 break;
-
-
 
             case "cement":
              try{
@@ -251,7 +217,7 @@ public void onUpdateReceived(Update update) {
                 break;
 
             // volsk docs block
-            case "VOL_CEM142N_tech":
+            case "VOL_CEMI42N_descr":
                 try {
                     sendDocUploadingAFile(update.getCallbackQuery().getMessage().getChatId(), VOL_CEMI42N_descr, "done");
                 } catch (TelegramApiException e){
@@ -554,7 +520,7 @@ public void onUpdateReceived(Update update) {
                 break;
             case "cem1B_tech_properties":
                 try {
-                    sendDocUploadingAFile(update.getCallbackQuery().getMessage().getChatId(), CEM1B_descr, "done" );
+                    sendDocUploadingAFile(update.getCallbackQuery().getMessage().getChatId(), CEM1B_descr, CEM1B_descr.getClass().getProtectionDomain().getCodeSource().getLocation().getPath());
                 } catch (TelegramApiException e){
                     e.printStackTrace();
                 }
@@ -584,7 +550,7 @@ public void onUpdateReceived(Update update) {
                 break;
             case "cem2B_certificate":
                 try{
-                    sendDocUploadingAFile(update.getCallbackQuery().getMessage().getChatId(), CEM2B_certificate, "done");
+                    sendDocUploadingAFile(update.getCallbackQuery().getMessage().getChatId(), CEM2B_certificate, CEM2B_certificate.getMediaName());
                 } catch (TelegramApiException e){
                     e.printStackTrace();
                 }
@@ -610,7 +576,7 @@ public void onUpdateReceived(Update update) {
 
 
 
-    private void sendDocUploadingAFile(long chatId, InputFile save, String caption) throws TelegramApiException {
+    private void sendDocUploadingAFile(long chatId, InputFile save, String caption) throws TelegramApiException, NullPointerException {
 
         SendDocument sendDocument = new SendDocument();
         sendDocument.setChatId(chatId);
@@ -640,7 +606,7 @@ public void onUpdateReceived(Update update) {
 
         InlineKeyboardButton visitSite = new InlineKeyboardButton();
         visitSite.setText("Посетить наш сайт");
-        visitSite.setUrl("https://cemlab.holcimrus.ru");
+        visitSite.setUrl("https://holcimrus.ru");
         List<InlineKeyboardButton> inlineKeyboardRow = new ArrayList<>();
         inlineKeyboardRow.add(visitSite);
 
@@ -656,6 +622,7 @@ public void onUpdateReceived(Update update) {
         return startMessage;
 
     }
+
 
     // keyboard for plant
 
@@ -1142,7 +1109,7 @@ public void onUpdateReceived(Update update) {
 
         InlineKeyboardButton inlineKeyboardButton = new InlineKeyboardButton();
         inlineKeyboardButton.setText("Тех. описание");
-        inlineKeyboardButton.setCallbackData("VOL_CEM142N_tech");
+        inlineKeyboardButton.setCallbackData("VOL_CEMI42N_descr");
 
         InlineKeyboardButton inlineKeyboardButton1 = new InlineKeyboardButton();
         inlineKeyboardButton1.setText("Сертификат соответствия");
@@ -1535,6 +1502,19 @@ public void onUpdateReceived(Update update) {
         return notReady;
     }
 
+ /*
+   private File assignFile (Update update){
+      String str = update.getCallbackQuery().getData();
+      File assignedFile = null;
+      for (File file : directoryForFiles.listFiles()){
+          if (str.equals(file.getName())){
+              assignedFile = new File(file.getAbsolutePath());
+              break;
+          }
+      }
+        return assignedFile;
+   }
+  */
 
     @Override
     public String getBotUsername() {
